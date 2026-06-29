@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Compile check
+        run: python -m py_compile voice_corpus_tool.py
+
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Launcher integration test
+        run: bash tests/test_launcher.sh

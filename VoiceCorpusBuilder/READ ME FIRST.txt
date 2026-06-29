@@ -1,0 +1,91 @@
+============================================================
+  VOICE CORPUS BUILDER  —  How to use this (Mac)
+============================================================
+
+This turns your Facebook & Instagram posts into a single text file you can
+give to an AI to help it write in your voice.
+
+Everything runs ON YOUR OWN COMPUTER. Nothing is uploaded anywhere.
+
+
+------------------------------------------------------------
+STEP 1 — Get your data from Facebook and Instagram
+------------------------------------------------------------
+Request your info in JSON format (this is important — not HTML):
+
+FACEBOOK:
+  Settings & privacy  ->  Settings  ->  Accounts Center  ->
+  Your information and permissions  ->  Download your information
+    - Pick your Facebook profile
+    - Format: JSON          <-- IMPORTANT
+    - Date range: All time
+    - Include: Posts, Comments, Stories
+    - Submit. Facebook emails you a download link (can take a while).
+
+INSTAGRAM:
+  Settings  ->  Accounts Center  ->
+  Your information and permissions  ->  Download your information
+    - Pick your Instagram profile
+    - Format: JSON          <-- IMPORTANT
+    - Date range: All time
+    - Include: Content (posts/stories/reels) and Comments
+    - Submit. Instagram emails you a download link.
+
+You'll get one or two .zip files. You do NOT need to unzip them.
+
+
+------------------------------------------------------------
+STEP 2 — Put the zip files in THIS folder
+------------------------------------------------------------
+Drag the downloaded .zip file(s) into this same folder, right next to the
+"Build Voice Corpus" icon. Facebook only, Instagram only, or both — all fine.
+
+
+------------------------------------------------------------
+STEP 3 — Install Python (one time, only if needed)
+------------------------------------------------------------
+If you don't already have Python, the app will open the download page for you.
+Just download the macOS installer from python.org and click through it. You
+only ever do this once.
+
+
+------------------------------------------------------------
+STEP 4 — Double-click "Build Voice Corpus"
+------------------------------------------------------------
+A window opens and asks you a few simple questions (what to include, date
+range, etc.). When it finishes, your text file(s) appear in this folder.
+
+
+------------------------------------------------------------
+FIRST-TIME SECURITY MESSAGE (this is normal)
+------------------------------------------------------------
+The very first time you open it, macOS may say it "cannot be opened because
+it is from an unidentified developer." This is expected for free tools.
+
+To get past it ONCE:
+  1. RIGHT-CLICK (or Control-click) the "Build Voice Corpus" icon.
+  2. Choose "Open" from the menu.
+  3. Click "Open" in the dialog that appears.
+
+After that first time, you can just double-click it normally.
+
+(If double-clicking ever does nothing: right-click "Build Voice Corpus" ->
+ Open With -> Terminal.)
+
+
+------------------------------------------------------------
+WHAT YOU GET
+------------------------------------------------------------
+A text file (default name: voice_corpus.txt) with your posts in time order,
+each tagged with where it came from, the date, and the type of content, so
+you or the AI can filter it further.
+
+Questions answered by the tool:
+  - Which content types (posts / captions / stories / comments)
+  - Date range
+  - Minimum length (skip one-word and emoji-only bits)
+  - Combine into one file, or one file per type
+
+Tip: your most recent posts and captions are the best match for how you
+write today.
+============================================================

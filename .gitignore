@@ -1,0 +1,25 @@
+# ---------------------------------------------------------------------------
+# Personal data — NEVER commit. This tool processes private social-media
+# exports; keep real exports and generated corpora out of the repo entirely.
+# ---------------------------------------------------------------------------
+# Meta export archives (Facebook / Instagram "Download Your Information")
+*.zip
+facebook-*.zip
+instagram-*.zip
+
+# Generated voice corpora (contain your actual posts/comments)
+voice_*.txt
+*_corpus.txt
+
+# The personal one-off build script (hardcoded name + local paths)
+build_corpus.py
+
+# ---------------------------------------------------------------------------
+# Build artifacts / caches
+# ---------------------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+
+# OS cruft
+.DS_Store
