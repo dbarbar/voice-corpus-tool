@@ -41,6 +41,13 @@ AI to write like them. Public repo: <https://github.com/dbarbar/voice-corpus-too
   `VoiceCorpusBuilder.zip` and publishes the GitHub release.
 - `.github/workflows/ci.yml` tests every push to `main` and every PR.
 
+## Cost / model
+
+- Prefer **Sonnet** (`/model sonnet`) for routine work here — edits, running
+  tests, doc tweaks, mechanical refactors. Reserve **Opus** for genuinely hard
+  design or debugging. This project is small and well-structured; most tasks are
+  Sonnet-tier.
+
 ## Notes
 
 - `TODO.md` (git-ignored, local-only) holds approved-but-unbuilt future ideas:
