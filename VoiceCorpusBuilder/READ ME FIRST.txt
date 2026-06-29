@@ -8,6 +8,26 @@ give to an AI to help it write in your voice.
 Everything runs ON YOUR OWN COMPUTER. Nothing is uploaded anywhere.
 
 
+************************************************************
+*  PLEASE READ — YOUR EXPORT IS VERY PERSONAL             *
+************************************************************
+The .zip you download from Facebook/Instagram is one of the most sensitive
+files you own. Besides your posts it can include your PRIVATE MESSAGES (yours
+and the other person's), your location and device history, the ad-interest
+profile they built about you, and your login/security history.
+
+So please:
+  - Keep the .zip on THIS computer. Don't email it, and don't put it in a
+    shared or cloud-synced folder (Dropbox, iCloud Drive, Google Drive,
+    OneDrive) or any "upload your file" website.
+  - Delete the .zip when you're finished (or keep it somewhere safe).
+  - The text file this makes is YOUR REAL WRITING. Open and read it before you
+    paste it into any AI — pasting it online sends it to another company.
+  - Facebook does not tell us who could see each post, so the result can
+    include things you posted privately or to friends only. Look it over and
+    remove anything you don't want to share.
+
+
 ------------------------------------------------------------
 STEP 1 — Get your data from Facebook and Instagram
 ------------------------------------------------------------
@@ -88,4 +108,8 @@ Questions answered by the tool:
 
 Tip: your most recent posts and captions are the best match for how you
 write today.
+
+REMEMBER: open the text file and read through it before giving it to any AI.
+It may contain private or friends-only posts, so remove anything you'd rather
+not share. Keep it (and your .zip) off shared/cloud-synced folders.
 ============================================================

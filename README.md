@@ -7,6 +7,31 @@ write like you.
 Works on **any** FB/IG "Download Your Information" export (not a specific account),
 needs only Python 3.8+, and has **no dependencies**.
 
+## ⚠️ Privacy & safety — read before you start
+
+**Your Facebook/Instagram export is one of the most sensitive files you will ever
+handle.** It's not just your posts. A full export can also contain:
+
+- your **private direct messages** — both yours *and the other person's* words,
+- your **location, IP, and device history**,
+- the **ad-targeting interest profile** Meta built about you,
+- **account-security logs** (logins, sessions, 2FA events).
+
+Handle it accordingly:
+
+- **Keep the export on your own device.** Don't email it, and don't put it in a
+  shared or auto-syncing cloud folder (Dropbox, iCloud Drive, Google Drive,
+  OneDrive) or any "upload / convert my file" website.
+- **This tool runs 100% offline.** It only reads the files you point it at and
+  writes a text file next to them. Nothing is uploaded.
+- **Delete the raw export when you're done**, or store it encrypted.
+- **Review the output before feeding it to an AI.** The corpus is your real
+  writing. Pasting or uploading it into an online AI service sends it to a third
+  party that may retain it — skim and prune it first.
+- **Facebook post visibility is unknown** (see below): the corpus *can* include
+  things you originally posted privately or friends-only, and there's no way to
+  tell them apart from public posts in the export. Review and remove as needed.
+
 ## Usage
 
 ```bash

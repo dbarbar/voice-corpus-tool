@@ -31,6 +31,24 @@ INSTRUCTIONS = """\
 This tool turns your Facebook + Instagram posts into a single text file you can
 feed to an AI you're calibrating to write in your voice.
 
+  !!  PRIVACY — PLEASE READ  !!
+  --------------------------------------------------------------------------
+  Your Facebook/Instagram export is one of the most sensitive files you own.
+  Besides your posts it can contain: private DMs (yours AND the other
+  person's), your location / IP / device history, ad-targeting profiles,
+  and account-security logs.
+
+   - Keep the export on YOUR device. Don't email it, and don't drop it in a
+     shared or auto-syncing cloud folder (Dropbox, iCloud Drive, Google
+     Drive, OneDrive) or any "upload / convert my file" website.
+   - This tool runs 100% offline — nothing you give it leaves your computer.
+   - Delete the raw export when you're done (or store it encrypted).
+   - The text file it produces is YOUR REAL WRITING. READ IT before pasting
+     into any AI: uploading sends it to a third party that may retain it.
+   - Facebook posts carry NO visibility info, so the output can include
+     things you originally posted privately or friends-only. Review & prune.
+  --------------------------------------------------------------------------
+
 STEP 1 — Request your data exports (choose JSON format!)
 
   Facebook:
@@ -388,6 +406,14 @@ def write_corpus(path, entries):
         by_type[e["type"]] = by_type.get(e["type"], 0) + 1
     header = textwrap.dedent(f"""\
         # Written-voice corpus — Facebook + Instagram exports
+        #
+        # !! PRIVACY: This is YOUR REAL WRITING. It may include posts you made
+        #    privately or friends-only — Facebook exports don't record post
+        #    visibility, so it can't be filtered out (every item is tagged
+        #    visibility=unknown). SKIM THIS FILE before you use it, and remember
+        #    that pasting/uploading it into an online AI sends it to a third
+        #    party that may store it. Keep this file off shared/synced folders.
+        #
         # Ordered chronologically (oldest first).
         # Entry format: [#id] datetime | source | type | era | media | shared_link | visibility | chars
         #   source: FB / IG     type: post | caption | story | comment
@@ -475,6 +501,9 @@ def main():
         print("\nNOTE: These exports contain NO per-item visibility/audience data.")
         print("      (Meta omits it from posts/captions/stories; IG privacy is account-wide.)")
         print("      Every item will be tagged visibility=unknown; no privacy filter applied.")
+        print("      => The output CAN include posts you made privately or friends-only.")
+        print("         There is no way to tell them apart from public ones in the export,")
+        print("         so review the result before sharing it or feeding it to an AI.")
 
     dedupe = ask_yes_no("\nDe-duplicate identical cross-posts (same text on FB & IG)?", True)
     split = ask_yes_no("Write a separate file per content type (vs one combined file)?", False)
@@ -501,6 +530,16 @@ def main():
     print("\nDone:")
     for path, n in written:
         print(f"  {path}  ({n} entries)")
+
+    print("\n" + "-" * 76)
+    print("BEFORE YOU USE THESE FILES:")
+    print("  - OPEN AND SKIM each one. It's your real writing and may include")
+    print("    private or friends-only posts (visibility isn't in the export).")
+    print("  - Pasting/uploading into an online AI sends it to a third party that")
+    print("    may retain it — review and prune first.")
+    print("  - Keep these files (and your raw export) OFF shared/synced cloud")
+    print("    folders, and delete the raw export when you're done.")
+    print("-" * 76)
 
 if __name__ == "__main__":
     try:

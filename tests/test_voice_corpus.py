@@ -186,6 +186,8 @@ class TestWrite(unittest.TestCase):
             self.assertIn("🤣", text)                            # encoding survives write
             self.assertIn("[#00001]", text)
             self.assertIn("| FB | post |", text)
+            self.assertIn("PRIVACY", text)                       # privacy warning in header
+            self.assertIn("visibility=unknown", text)            # visibility caveat surfaced
         finally:
             shutil.rmtree(tmp)
 
