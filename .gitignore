@@ -25,5 +25,8 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Personal working notes (keep local; promote to GitHub issues when acting on them)
+TODO.md
+
 # OS cruft
 .DS_Store
