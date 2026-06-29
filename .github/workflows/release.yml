@@ -1,0 +1,56 @@
+name: Release
+
+# Cut a release by pushing a version tag:
+#   git tag v1.2.0 && git push origin v1.2.0
+# Tests run on Linux + macOS; only if they all pass does the release get built
+# and published with VoiceCorpusBuilder.zip attached.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+
+permissions:
+  contents: write   # needed to create the release
+
+jobs:
+  test:
+    name: test (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: Assemble package
+        run: ./package.sh
+      - name: Compile check
+        run: python -m py_compile voice_corpus_tool.py
+      - name: Unit tests
+        run: python -m unittest discover -s tests -v
+      - name: Launcher integration test
+        run: bash tests/test_launcher.sh
+
+  release:
+    needs: test          # gate: no release unless every test job passed
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Build distributable package
+        run: ./package.sh
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" VoiceCorpusBuilder.zip \
+            --title "${GITHUB_REF_NAME} — Voice Corpus Tool" \
+            --generate-notes

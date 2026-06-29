@@ -17,6 +17,10 @@ build_corpus.py
 # ---------------------------------------------------------------------------
 # Build artifacts / caches
 # ---------------------------------------------------------------------------
+# Generated copy of the canonical tool — assembled by package.sh / CI, not
+# version-controlled (single source of truth lives at the repo root).
+VoiceCorpusBuilder/voice_corpus_tool.py
+
 __pycache__/
 *.pyc
 *.pyo

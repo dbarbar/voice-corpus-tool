@@ -100,8 +100,10 @@ touching a terminal command themselves:
 - **`READ ME FIRST.txt`** — plain-language steps: get the exports, drop the zips in
   the folder, double-click, and the first-launch right-click→Open security step.
 
-Run `./package.sh` to sync the tool into that folder and produce
-`VoiceCorpusBuilder.zip` for sharing.
+Point people at the [**Releases**](../../releases) page to download
+`VoiceCorpusBuilder.zip` — it's built and attached automatically by CI for every
+version tag (see below). `./package.sh` produces the same zip locally if you need
+to test the package by hand.
 
 > Distribution note: this is the "install Python from python.org" approach — no
 > app bundling/signing yet. A future step could bundle Python with PyInstaller so
@@ -110,21 +112,40 @@ Run `./package.sh` to sync the tool into that folder and produce
 ## Development / tests
 
 ```bash
+./package.sh                               # assemble the shippable package first
 python3 -m unittest discover -s tests -v   # unit tests (synthetic exports, no real data)
 bash tests/test_launcher.sh                # launcher integration test
 ```
 
-CI (`.github/workflows/ci.yml`) runs both on **Linux and macOS** on every push.
-A drift guard test fails if `VoiceCorpusBuilder/voice_corpus_tool.py` falls out of
-sync with the root copy (fix by running `./package.sh`).
+Run `./package.sh` before the tests: the launcher and drift-guard tests check the
+assembled `VoiceCorpusBuilder/voice_corpus_tool.py`, which is **generated** (a copy
+of the root tool) and not committed.
+
+CI (`.github/workflows/ci.yml`) runs the same steps on **Linux and macOS** for every
+push and PR.
+
+## Cutting a release
+
+Releases are built and published by CI — nothing is uploaded from a laptop:
+
+```bash
+git tag v1.2.0
+git push origin v1.2.0
+```
+
+The [release workflow](.github/workflows/release.yml) runs the full test matrix, and
+only if it passes does it build `VoiceCorpusBuilder.zip` and create the GitHub release
+with the zip attached. Use [semantic version](https://semver.org/) tags (`vMAJOR.MINOR.PATCH`).
 
 ## Files in this repo
 
-- `voice_corpus_tool.py` — the reusable tool (canonical copy).
-- `VoiceCorpusBuilder/` — the shareable Mac package (launcher + tool + instructions).
-- `package.sh` — syncs the package and builds `VoiceCorpusBuilder.zip` (download it from
-  the [Releases](../../releases) page).
-- `tests/` — unit + launcher integration tests; `.github/workflows/ci.yml` runs them.
+- `voice_corpus_tool.py` — the reusable tool (the single source of truth).
+- `VoiceCorpusBuilder/` — the shareable Mac package: launcher (`Build Voice Corpus.command`)
+  + `READ ME FIRST.txt`. The tool copy and the `.zip` are **build outputs**, not committed.
+- `package.sh` — assembles the package and builds `VoiceCorpusBuilder.zip` locally.
+- `tests/` — unit + launcher integration tests.
+- `.github/workflows/` — `ci.yml` (test on push/PR) and `release.yml` (test + build +
+  publish on a version tag).
 
 Your real exports (`*.zip`) and the generated corpora (`voice_*.txt`) are **git-ignored
 on purpose** — they contain your personal posts and never get committed.

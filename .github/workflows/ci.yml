@@ -2,6 +2,7 @@ name: CI
 
 on:
   push:
+    branches: [main]
   pull_request:
   workflow_dispatch:
 
@@ -19,6 +20,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+
+      - name: Assemble package
+        # Generates VoiceCorpusBuilder/voice_corpus_tool.py (not committed) so the
+        # launcher + drift-guard tests have the shipped copy to check against.
+        run: ./package.sh
 
       - name: Compile check
         run: python -m py_compile voice_corpus_tool.py
